@@ -4,6 +4,7 @@ import Header from "./components/Header/Header.jsx";
 import CoreConcept from "./components/CoreConcept.jsx";
 import TabButton from "./components/TabButton.jsx";
 import { EXAMPLES } from "./data.js";
+import Clock from "./components/Timer.jsx";
 
 function App() {
   const [selectedTopic, setSelectedTopic] = useState();
@@ -18,6 +19,7 @@ function App() {
     <div>
       <Header />
       <main>
+        <Clock />
         <section id="core-concepts">
           <h2>Core Concepts</h2>
           <ul>
