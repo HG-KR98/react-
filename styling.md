@@ -87,6 +87,49 @@
 
 ## CSS 모듈
 
+React CSS Modules는 CSS의 범위를 컴포넌트 단위로 제한하여 스타일링 충돌을 방지하고, CSS를 모듈화하여 관리하는 방법이다. CSS Modules는 일반적인 CSS와 유사하게 작성되지만, 각각의 CSS 클래스와 ID가 고유하게 생성되어 컴포넌트 간의 스타일 충돌을 방지한다. 관련 컴포넌트 CSS 파일에 `.module.css`로 파일명을 작성하면 적용이 된다. 이러한 css 파일에서 가져온 클래스는 고유한 해시를 포함한 이름으로 변환된다.
+
+### CSS 모듈의 특징
+
+- 각 컴포넌트의 스타일이 해당 컴포넌트 파일과 함께 관리되므로, 스타일을 유지보수 하기가 쉽다. 컴포넌트와 스타일이 논리적으로 묶여 있어 파일 구조가 깔끔해진다.
+
+- CSS 파일을 컴포넌트 폴더 안에 배치하여 해당 컴포넌트와 직접적으로 연관된 스타일임을 명확히 할 수 있다.
+
+- JavaScript 내에서 동적으로 클래스명을 설정할 수 있다. 이를 통해 조건부 스타일링이나 여러 클래스를 쉽게 결합할 수 있다.
+
+```jsx
+import logo from "../assets/logo.png";
+import classes from "./Header.module.css";
+
+export default function Header() {
+  return (
+    <header>
+      <img src={logo} alt="A canvas" />
+      <h1>ReactArt</h1>
+      <p className={classes.paragraph}>
+        A community of artists and art-lovers.
+      </p>
+    </header>
+  );
+}
+```
+
+### CSS 모듈의 장점
+
+- CSS 클래스명이 자동으로 고유하게 변환되므로, 전역 네임스페이스 오염 없이 컴포넌트 단위로 스타일을 관리할 수 있다.
+
+- 스타일이 컴포넌트와 함께 묶여 있어, 코드가 더 모듈화되고 관리하기 쉬워진다. 이는 특히 대규모 애플리케이션에서 유용하다.
+
+- JavaScript 내에서 조건부로 클래스를 쉽게 적용할 수 있어, 동적 스타일링이 편리하다.
+
+- 전역 CSS를 사용하지 않아, 한 컴포넌트의 스타일이 다른 컴포넌트에 영향을 미치는 것을 방지할 수 있다.
+
+### CSS 모듈의 단점
+
+- CSS Modules는 스타일을 외부 CSS 파일에 작성하므로, CSS-in-JS와 비교했을 때 다소 유연성이 떨어질 수 있다. CSS-in-JS는 스타일을 JavaScript내에 직접 작성하여 더 많은 동적 스타일링 옵션을 제공한다.
+
+- CSS Modules를 사용하려면 빌드 도구의 지원이 필요하다. Create React App(CRA)과 같은 도구를 사용하면 설정이 간단하지만, 빌드 도구 설정을 직접 관리하는 경우에는 추가 설정이 필요할 수 있다.
+
 ## styled-components 패키지
 
 보통 리액트 프로젝트에서는 단일한 방법을 사용한다.
