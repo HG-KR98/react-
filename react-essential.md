@@ -88,3 +88,111 @@ JSX는 javaScript XML의 약자로, React에서 UI 컴포넌트를 작성할 때
 3. 복잡한 구문 : JSX는 복잡한 구조의 UI를 작성할 때 중첩된 태그가 많아지면 가독성이 떨어질 수 있다.
 
 <br />
+
+## Props
+
+Props는 컴포넌트 간 데이터를 전달하는 메커니즘이다. "properties"의 줄임말이며 부모 컴포넌트가 자식 컴포넌트에 전달하는 읽기 전용 데이터이다. Props는 컴포넌트가 동작을 제어하고, 재사용성을 높이며, 계층 구조에 따라 데이터를 전달하는 데 중요한 역할을 한다.
+
+### Props의 특징
+
+- 데이터 전달 : `props`는 부모 컴포넌트에서 자식 컴포넌트로 데이터를 전달하는 데 사용된다.
+
+- 읽기 전용 : 자식 컴포넌트는 `props`를 변경할 수 없다. `props`는 컴포넌트의 외부에서만 변경될 수 있다.
+
+- 재사용성 : `props`를 사용하면 컴포넌트를 더 재사용 가능하게 만들 수 있다. 동일한 컴포넌트를 여러 번 사용하되, 각 인스턴스에 다른 데이터를 전달할 수 있다.
+
+- 함수 전달 : `props`를 통해 함수를 자식 컴포넌트에 전달할 수 있다. 이를 통해 자식 컴포넌트에서 부모 컴포넌트의 상태를 업데이트할 수 있다.
+
+- 구조 분해 할당을 사용한 props 전달
+
+```jsx
+// Greeting.js
+import React from "react";
+
+const Greeting = ({ name }) => {
+  return <h1>Hello, {name}!</h1>;
+};
+
+export default Greeting;
+```
+
+### Props 사용시 화살표 함수를 사용하는 경우
+
+- 이벤트 핸들러 전달 : 자식 컴포넌트에 이벤트 핸들러를 전달할 때, 익명 화살표 함수를 자주 사용한다.
+
+```jsx
+function ParentComponent() {
+  const handleClick = () => {
+    console.log("Button clicked!");
+  };
+
+  return <ChildComponent onClick={() => handleClick()} />;
+}
+
+function ChildComponent({ onClick }) {
+  return <button onClick={onClick}>Click Me</button>;
+}
+```
+
+- 매개변수 전달 : 이벤트 핸들러에 매개변수를 전달할 때도 화살표 함수를 사용하여 간결하게 작성할 수 있다.
+
+```jsx
+import React from "react";
+
+const ChildComponent = ({ onButtonClick }) => (
+  <div>
+    <button onClick={() => onButtonClick("button1")}>Button 1</button>
+    <button onClick={() => onButtonClick("button2")}>Button 2</button>
+  </div>
+);
+
+const ParentComponent = () => {
+  const handleButtonClick = (buttonName) => {
+    console.log(`${buttonName} clicked`);
+  };
+
+  return (
+    <div>
+      <h1>Parent Component</h1>
+      <ChildComponent onButtonClick={handleButtonClick} />
+    </div>
+  );
+};
+
+export default ParentComponent;
+```
+
+</br>
+
+## state
+
+React의 상태(state)는 컴포넌트 내에서 동적인 데이터를 관리하는 중요한 개념이다. 상태는 컴포넌트의 렌더링과 동작에 영향을 미치며, 주로 사용자 입력, 서버 응답, 타이머, 기타 애플리케이션 이벤트에 의해 변경된다.
+
+### state의 특징
+
+- 컴포넌트 내부 관리 : 상태는 컴포넌트 내부에서 관리된다. 상태를 변경하면 React는 컴포넌트를 다시 렌더링하여 UI를 최신 상태로 유지한다.
+
+- 변경 가능 : `props`와 달리, 상태는 변경 가능하다. 상태는 주로 `useState` 훅을 사용하여 업데이트 된다.
+
+- 초기화 : 상태는 컴포넌트가 처음 렌더링될 때 초기화된다. 초기값은 `useState`의 인자로 전달된다.
+
+```jsx
+import React, { useState } from "react";
+
+const Counter = () => {
+  const [count, setCount] = useState(0);
+
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={increment}>Increment</button>
+    </div>
+  );
+};
+
+export default Counter;
+```

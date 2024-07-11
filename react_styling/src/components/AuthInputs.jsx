@@ -30,7 +30,7 @@ export default function AuthInputs() {
       <div className="flex flex-col gap-2 mb-6">
         <Input
           label="Email"
-          $invalid={emailNotValid}
+          invalid={emailNotValid}
           type="email"
           // style={{ backgroundColor: emailNotValid ? "#fed2d2" : "#d1d5db" }}
           // className={emailNotValid ? "invalid" : undefined}
