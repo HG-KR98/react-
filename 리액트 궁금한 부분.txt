@@ -1,8 +1,16 @@
 커스텀 속성, 자식 요소, 컴포넌트 내 다양한 슬롯 설정, 다양한 wrapper 요소, 식별자
 , wrapper Element, 다양한 HTML 요소를 동적으로 설정, 속성의 기본값
 프래그먼트, 양방향 바인딩, 파생된 상태, 헬퍼 함수, 상태 끌어올리기, media 쿼리
-pseudo, 재사용 가능 컴포넌트 생성 및 컴포넌트 조합, 
+pseudo, 재사용 가능 컴포넌트 생성 및 컴포넌트 조합, 테일윈드 css
+컴포넌트 합성, children 속성, React context API, useContext 훅
+컨텍스트를 사용하는 여러 방법(provider, consumer - 이 방법은 다소 길고 복잡하기 때문에 읽는 것 또한 더 어려워서
+기본 접근법으로는 적절하지 않다.)
+컨텍스트 아웃소싱 - 모든 컨텍스트 관련 데이터 관리를 앱 컴포넌트가 아닌 별개의 컨텍스트
+컴포넌트에 넣을 수 있도록 해 주는 것.
+useReducer
+Reducer
 
+분리된 제공자 컴포넌트에 State(상태) 부여
 
 리액트에서는 DOM을 직접 조작하지 않고 선언적 코드를 사용해야 한다!
 
@@ -21,6 +29,7 @@ pseudo, 재사용 가능 컴포넌트 생성 및 컴포넌트 조합,
 
 다른 상태를 병합하지 않도록
 
+컴포넌트, 속성, JSX
 
 react public 디렉토리
 - React 프로젝트에서는 `public` 폴더가 웹 서버의 루트 디렉토리로 간주된다. 따라서 `public`
@@ -40,9 +49,6 @@ public 폴더는 루트 디렉토리로 매핑되므로, 절대 경로 /game-log
 
 이거 무조건 듣기!!
 https://academind.com/tutorials/reference-vs-primitive-values
-
-
-얕은 복사 깊은 복사 다시 개념 잡기
 
 상태를 끌어올리면 안되는 경우
 
