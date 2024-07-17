@@ -12,6 +12,10 @@ Reducer
 toolkit의 slice 액션
 combineReducers
 
+router에 대한 개념 및 간단한 함수
+useParams
+NavLink와 Link의 차이
+
 분리된 제공자 컴포넌트에 State(상태) 부여
 
 리액트에서는 DOM을 직접 조작하지 않고 선언적 코드를 사용해야 한다!

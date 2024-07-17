@@ -19,7 +19,7 @@ function HomePage() {
             기본적으로는 그 요소에 대한 클릭을 감시하고 링크를 클릭했을 때 HTTP 요청을
             전송하는 브라우저 기본 설정을 막아주게 된다.
         */}
-        Go to <Link to="/products">the list of products</Link>.
+        Go to <Link to="products">the list of products</Link>.
       </p>
       <p>
         <button onClick={navigateHandler}>Navigate</button>
