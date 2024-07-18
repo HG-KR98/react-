@@ -27,7 +27,7 @@ import NewEventPage from "./pages/NewEventPage";
 import EditEventPage from "./pages/EditEventPage";
 import RootLayout from "./pages/Root";
 import EventsRootLayout from "./pages/EventsRoot";
-
+import { loader as eventsLoader } from "./pages/Event.js";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -44,6 +44,12 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <EventsPage />,
+            // 라우터가 페이지에 방문하기 직전에 이 함수를 실행한다.
+            // 그럼 이 라우트가 렌더링되기 직전 loader() 함수가 리액트 라우터에 의해
+            // 트리거되고 실행될 것이다.
+            // loader를 모두 App.js 파일에 몰아서 넣으면 코드가 길어지고 복잡해지며
+            // 결국 App.js가 무거워지게 된다. 그러므로 loader를 컴포넌트에 넣는 것이 권장사항이다.
+            loader: eventsLoader,
           },
           {
             path: ":someId",
