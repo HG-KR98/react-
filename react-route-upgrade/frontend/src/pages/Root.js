@@ -1,7 +1,9 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigation } from "react-router-dom";
 import MainNavigation from "../components/MainNavigation";
 
 function RootLayout() {
+  // const navigation = useNavigation();
+
   return (
     <>
       {/*
@@ -11,6 +13,8 @@ function RootLayout() {
     */}
       <MainNavigation />
       <main>
+        {/* 데이터를 로딩하고 있다는 걸 사용자에게 알려준다. */}
+        {/* {navigation === "loading" && <p>Loading...</p>} */}
         <Outlet />
       </main>
     </>

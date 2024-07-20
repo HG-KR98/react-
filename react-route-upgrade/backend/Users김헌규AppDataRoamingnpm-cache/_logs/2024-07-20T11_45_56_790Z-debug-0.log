@@ -7,6 +7,7 @@
 6 silly config:load:file:C:\Users\김헌규\AppData\Roaming\npm\etc\npmrc
 7 verbose title npm start
 8 verbose argv "start"
-9 verbose logfile logs-max:10 dir:C:\Users\김헌규\Desktop\리액트 공부\react-\react-route-upgrade\backend\Users김헌규AppDataRoamingnpm-cache\_logs\2024-07-18T13_13_45_051Z-
-10 verbose logfile C:\Users\김헌규\Desktop\리액트 공부\react-\react-route-upgrade\backend\Users김헌규AppDataRoamingnpm-cache\_logs\2024-07-18T13_13_45_051Z-debug-0.log
-11 silly logfile done cleaning log files
+9 verbose logfile logs-max:10 dir:C:\Users\김헌규\Desktop\리액트 공부\react-\react-route-upgrade\backend\Users김헌규AppDataRoamingnpm-cache\_logs\2024-07-20T11_45_56_790Z-
+10 verbose logfile C:\Users\김헌규\Desktop\리액트 공부\react-\react-route-upgrade\backend\Users김헌규AppDataRoamingnpm-cache\_logs\2024-07-20T11_45_56_790Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly logfile done cleaning log files

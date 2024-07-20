@@ -19,6 +19,8 @@ NavLink와 Link의 차이
 loader 프로퍼티 - 어떤 페이지에 대한 loader는 우리가 그 페이지로 이동하기 시작할 때 호출된다.
 페이지 컴포넌트가 렌더링된 다음이 아니다. 
 useLoaderData
+useNavigation
+useRouteError
 
 분리된 제공자 컴포넌트에 State(상태) 부여
 
