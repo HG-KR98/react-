@@ -22,7 +22,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import EventsPage from "./pages/EventsPage";
-import EventDetailPage from "./pages/EventDetailPage";
+import EventDetailPage, {
+  loader as eventDetailLoader,
+} from "./pages/EventDetailPage";
 import NewEventPage from "./pages/NewEventPage";
 import EditEventPage from "./pages/EditEventPage";
 import RootLayout from "./pages/Root";
@@ -56,16 +58,31 @@ const router = createBrowserRouter([
             loader: eventsLoader,
           },
           {
-            path: ":someId",
-            element: <EventDetailPage />,
+            // 역동적인 세그먼트
+            path: ":eventId",
+            // 특수 id 프로퍼티
+            id: "event-detail",
+            // 이 중첩된 라우트 기능을 단지 래버 레이아웃 컴포넌트만이 아니라
+            // 공통 loader를 사용하기 위해 쓸 수 있다.
+            // 리액트 라우터가 제공하는 특수 훅인 useLoaderData를 사용해서
+            // loader가 추가된 라우트보다 더 낮은 수준 또는 같은 수준에 있는 컴포넌트에 있는
+            // loader 데이터에 엑세스할 수 있기 때문이다.
+            loader: eventDetailLoader,
+            children: [
+              {
+                index: true,
+                element: <EventDetailPage />,
+                // loader: eventDetailLoader,
+              },
+              {
+                path: "edit",
+                element: <EditEventPage />,
+              },
+            ],
           },
           {
             path: "new",
             element: <NewEventPage />,
-          },
-          {
-            path: ":someId/edit",
-            element: <EditEventPage />,
           },
         ],
       },

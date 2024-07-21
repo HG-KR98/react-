@@ -21,6 +21,7 @@ loader 프로퍼티 - 어떤 페이지에 대한 loader는 우리가 그 페이�
 useLoaderData
 useNavigation
 useRouteError
+useLoaderData
 
 분리된 제공자 컴포넌트에 State(상태) 부여
 
