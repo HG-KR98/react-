@@ -3,6 +3,7 @@ import {
   useLoaderData,
   useRouteLoaderData,
   json,
+  redirect,
 } from "react-router-dom";
 import EventItem from "../components/EventItem";
 
@@ -51,4 +52,25 @@ export async function loader({ request, params }) {
   // 이렇게 loader를 추가한 후 이제 loader를 라우트 정의에 등록해야 한다.
   // 리액트 라우터는 loader를 자동으로 찾지 않기 때문에 loader 함수만 추가해서는
   // 아무런 역할을 하지 않는다.
+}
+
+export async function action({ params, request }) {
+  const eventId = params.eventId;
+  // 이렇게만 작성해서 요청을 하게되면 이벤트를 삭제하지 않는다.
+  // 이벤트를 삭제하는 건 백엔드가 기다리고 있는 요청이 아니기 때문이다.
+  // 대신에 우리는 여기서 전송하는 이 요청을 설정해야 한다.
+  // const response = await fetch("http://localhost:8080/events/" + eventId);
+  const response = await fetch("http://localhost:8080/events/" + eventId, {
+    method: request.method,
+  });
+
+  if (!response.ok) {
+    throw json(
+      { message: "Could not delete event." },
+      {
+        status: 500,
+      }
+    );
+  }
+  return redirect("/events");
 }

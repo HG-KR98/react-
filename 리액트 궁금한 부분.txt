@@ -22,6 +22,8 @@ useLoaderData
 useNavigation
 useRouteError
 useLoaderData
+action
+useActionData
 
 분리된 제공자 컴포넌트에 State(상태) 부여
 
