@@ -3,8 +3,9 @@ import {
   Form,
   useNavigation,
   useActionData,
+  json,
+  redirect,
 } from "react-router-dom";
-
 import classes from "./EventForm.module.css";
 
 function EventForm({ method, event }) {
@@ -17,7 +18,6 @@ function EventForm({ method, event }) {
 
   // useNavigation 훅은 네비게이션 객체에 대한 액세스를 제공한다.
   const navigation = useNavigation();
-
   const isSubmitting = navigation.state === "submitting";
 
   function cancelHandler() {
@@ -35,7 +35,8 @@ function EventForm({ method, event }) {
     // 또한 이러한 요청은 자동으로 백엔드로 전송되지 않고 액션으로 전송되며 모든 데이터가 포함된다.
 
     // 리액트 라우터가 제공하는 Form 컴포넌트를 이용하는 방법이 가장 일반적이다.
-    <Form method="post" className={classes.form}>
+    // 여기서의 method는 리액트 라우터가 생성하고 action에 전달된 클라이언트 측 요청에 method를 설정하기 위해서만 사용한다.
+    <Form method={method} className={classes.form}>
       {data && data.errors && (
         <ul>
           {Object.values(data.errors).map((err) => (
@@ -95,3 +96,43 @@ function EventForm({ method, event }) {
 }
 
 export default EventForm;
+
+export async function action({ request, params }) {
+  const method = request.method;
+  // formData를 활용하기 위해 formData 메서드를 사용
+  const data = await request.formData();
+
+  // const enteredTitle = data.get('title')
+
+  const eventData = {
+    title: data.get("title"),
+    image: data.get("image"),
+    date: data.get("date"),
+    description: data.get("description"),
+  };
+
+  let url = "http://localhost:8080/events";
+
+  if (method === "PATCH") {
+    const eventId = params.eventId;
+    url = "http://localhost:8080/events/" + eventId;
+  }
+
+  const response = fetch(url, {
+    method: method,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(eventData),
+  });
+
+  if (response.status === 422) {
+    return response;
+  }
+
+  if (!response.ok) {
+    throw json({ message: "Could not save event." }, { status: 500 });
+  }
+
+  return redirect("/events");
+}

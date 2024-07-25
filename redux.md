@@ -24,6 +24,8 @@
 
 ![alt text](image.png)
 
+<br />
+
 #### 사진처럼 ContextProvider 컴포넌트가 아주 많이 생기게 되는 경우
 
 위의 경우를 피하기 위해 하나의 컨텍스트에 모든 설정을 하게 되면 그 컨텍스트 자체를 유지하고 관리하기가 어려워질 수 있다.
@@ -62,3 +64,80 @@ createStore()라는 함수를 사용하여 리덕스 저장소를 생성할 수 
 
 ### Redux 핵심 개념
 
+#### 1. Reducer
+
+Reducer는 애플리케이션의 상태(state)와 액션(action)을 받아서 새로운 상태를 반환하는 순수함수이다. Reducer는 이전 상태와 액션을 입력으로 받아 새로운 상태를 출력으로 반환한다. 중요한 점은 reducer 함수는 부작용이 없어야 하며, 입력 값을 변경하지 않고 항상 동일한 입력에 대해 동일한 출력을 반환해야 한다.
+
+```jsx
+const initialState = {
+  count: 0,
+};
+
+function counterReducer(state = initialState, action) {
+  switch (action.type) {
+    case "INCREMENT":
+      return {
+        ...state,
+        count: state.count + 1,
+      };
+    case "DECREMENT":
+      return {
+        ...state,
+        count: state.count - 1,
+      };
+    default:
+      return state;
+  }
+}
+```
+
+#### 2. Action
+
+Action은 상태 변화를 일으키는 정보를 담고 있는 객체이다. Action 객체는 반드시 `type` 속성은 액션의 종류를 나타낸다. 그 외에 필요한 데이터는 임의로 추가할 수 있다. Action은 dispatch 함수를 통해 reducer로 전달되어 상태를 변화시킨다.
+
+```jsx
+const incrementAction = {
+  type: "INCREMENT",
+};
+
+const decrementAction = {
+  type: "DECREMENT",
+};
+
+// 혹은 함수로 정의하여 사용할 수 있습니다.
+function increment() {
+  return {
+    type: "INCREMENT",
+  };
+}
+
+function decrement() {
+  return {
+    type: "DECREMENT",
+  };
+}
+```
+
+```jsx
+const incrementAction = {
+  type: "INCREMENT",
+};
+
+const decrementAction = {
+  type: "DECREMENT",
+};
+
+const addAction = {
+  type: "ADD",
+  payload: 5,
+};
+```
+
+#### 3. Dispatch
+
+Dispatch는 action을 reducer로 보내는 함수이다. Redux 스토어는 dispatch 메서드를 제공하여 상태를 업데이트 한다.
+
+```jsx
+store.dispatch(increment());
+store.dispatch(decrement());
+```
